@@ -49,11 +49,11 @@ export const loginController = async (req: Request, res: Response) => {
     try {
         const user = await User.findOne({ email })
         if (!user) {
-            res.status(404).json({ message: "Invalid Credentials" });
+            res.status(404).json({ message: "Email/Password not exists!" });
         } else {
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                res.status(401).json({ message: "Invalid Credentials!" })
+                res.status(401).json({ message: "Email/Password not exists!" })
             } else {
                 const token = jwt.sign({ userId: user.id, role: user.role },
                     process.env.JWT_SECRET_KEY as string,

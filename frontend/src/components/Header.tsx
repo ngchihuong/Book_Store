@@ -162,7 +162,7 @@ export default function Header() {
                                     <Link to='/history'
                                         className="flex flex-row justify-center items-center gap-x-2 group">
                                         <span className="group-hover:text-gray-500 text-3xl md:text-2xl font-bold mx-5 md:mx-0">
-                                            <MdManageHistory />
+                                            <MdManageHistory className="hidden md:flex"/>
                                         </span>
                                         <span className="group-hover:text-gray-500 font-sans text-lg hidden md:flex">
                                             History
@@ -171,7 +171,7 @@ export default function Header() {
                                 </div>
                             </>
                         )}
-                        <div className="">
+                        <div className="hidden lg:flex">
 
                             {open === false
                                 ? <>
@@ -326,7 +326,15 @@ export default function Header() {
                                 <span>Contact Us</span>
                             </Link>
                         </li>
-
+                        <li className="flex-w-full flex-col border-b">
+                            <Link
+                                to="/history"
+                                className={`flex items-center gap-x-2 py-1 px-2 text-xl`}
+                                onClick={closeNav}
+                            >
+                                <span>History</span>
+                            </Link>
+                        </li>
                         <li className="list-item w-full py-2 border-b">
                             <button
                                 aria-controls="category-content-mobile"

@@ -31,10 +31,10 @@ export default function BookRow(props: Props) {
 
     return (
         <>
-            <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-y-5 gap-x-8">
+            <div className="my-4 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4 md:gap-x-6 lg:grid-cols-5">
                 {fiveBook.map((book: any) => {
                     const isProductInCart = CartProducts.some((item) => item.id === book._id);
-                    
+
                     return (
                         <article key={book.id} className={`flex flex-col gap-y-2 rounded font-sans shadow hover:shadow-lg ${"className"}`}>
                             <Link
@@ -44,7 +44,7 @@ export default function BookRow(props: Props) {
                             >
                                 <div className="relative h-48 w-full overflow-hidden transition-transform duration-200 hover:scale-105">
                                     <img src={book.imageUrls[0]} alt={"title"}
-                                        className="object-contain w-full 50vw sm:min-w-[33vw] md:min-w-[25vw] lg:min-w-[20vw]"
+                                        className="object-contain py-1 sm:w-[20vw] w-[50vw] h-full"
                                     />
                                 </div>
                             </Link>
@@ -91,7 +91,7 @@ export default function BookRow(props: Props) {
                                         className="border-spacing-10 bg-gray-700 text-white flex-1 rounded
                                      py-2 px-1 text-md font-semibold hover:bg-gray-900 hover:text-gray-300
                                      disabled:bg-gray-400"
-                                       disabled={isProductInCart}
+                                        disabled={isProductInCart}
                                     >
                                         Add to Cart
                                     </button>

@@ -1,36 +1,27 @@
 import { Card, Row, Col, Typography } from 'antd';
-import { FaUserFriends, FaBook, FaDollarSign, FaCartArrowDown } from 'react-icons/fa';
-import { Line } from '@ant-design/charts'; // Sử dụng thư viện biểu đồ
+import { FaUserFriends, FaBook, FaCartArrowDown } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import * as userApiClient from "@/api/userApiClient"
+import * as bookApiClient from "@/api/bookApiClient"
+import * as orderApiClient from "@/api/orderApiClient"
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import adArt from "@/assets/public/ad1.png"
 
 const { Title, Text } = Typography;
 
 const AdminDashboard = () => {
-    // Dữ liệu giả cho biểu đồ
-    const data = [
-        { month: 'Jan', value: 30 },
-        { month: 'Feb', value: 40 },
-        { month: 'Mar', value: 35 },
-        { month: 'Apr', value: 50 },
-        { month: 'May', value: 55 },
-    ];
 
-    // Cấu hình biểu đồ
-    const chartConfig = {
-        data,
-        xField: 'month',
-        yField: 'value',
-        smooth: true,
-        color: '#4CAF50',
-        height: 200,
-    };
     const { data: userData } = useQuery(
         "fetchAllAccounts",
         userApiClient.fetchAllAccounts
     );
+    const { data: bookData } = useQuery(
+        "fetchAllBook", bookApiClient.fetchAllBook
+    )
+    const { data: orderData } = useQuery(
+        "fetchAllOrders", orderApiClient.fetchAllOrders
+    )
     if (!userData) {
         return (
             <div className="flex justify-center items-center animate-spin duration-50 text-4xl h-48 text-gray-800">
@@ -38,8 +29,23 @@ const AdminDashboard = () => {
             </div>
         )
     }
-
+    if (!bookData) {
+        return (
+            <div className="flex justify-center items-center animate-spin duration-50 text-4xl h-48 text-gray-800">
+                <AiOutlineLoading3Quarters />
+            </div>
+        )
+    }
+    if (!orderData) {
+        return (
+            <div className="flex justify-center items-center animate-spin duration-50 text-4xl h-48 text-gray-800">
+                <AiOutlineLoading3Quarters />
+            </div>
+        )
+    }
     const totalUser = userData.length;
+    const totalBook = bookData.length;
+    const totalOrders = orderData.length;
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
             {/* Tiêu đề */}
@@ -69,9 +75,11 @@ const AdminDashboard = () => {
                         bordered={false}
                         style={{ borderRadius: 10 }}
                     >
-                        <FaBook size={40} className="text-green-500" />
-                        <Title level={4}>Books</Title>
-                        <Text>560 Books Available</Text>
+                        <Link to='/list-books'>
+                            <FaBook size={40} className="text-green-500" />
+                            <Title level={4}>Books</Title>
+                            <Text>{totalBook} Books Available</Text>
+                        </Link>
                     </Card>
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
@@ -80,37 +88,23 @@ const AdminDashboard = () => {
                         bordered={false}
                         style={{ borderRadius: 10 }}
                     >
-                        <FaCartArrowDown size={40} className="text-red-500" />
-                        <Title level={4}>Orders</Title>
-                        <Text>320 Orders This Month</Text>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} lg={6}>
-                    <Card
-                        className="shadow-lg"
-                        bordered={false}
-                        style={{ borderRadius: 10 }}
-                    >
-                        <FaDollarSign size={40} className="text-yellow-500" />
-                        <Title level={4}>Revenue</Title>
-                        <Text>$12,400 This Month</Text>
+                        <Link to='/list-orders'>
+                            <FaCartArrowDown size={40} className="text-red-500" />
+                            <Title level={4}>Orders</Title>
+                            <Text>{totalOrders} Orders </Text>
+                        </Link>
                     </Card>
                 </Col>
             </Row>
-
-            {/* Biểu đồ */}
-            <Row justify="center" className="mt-8">
-                <Col xs={24} lg={16}>
-                    <Card
-                        title="Monthly Revenue Trend"
-                        bordered={false}
-                        className="shadow-lg"
-                        style={{ borderRadius: 10 }}
-                    >
-                        <Line {...chartConfig} />
-                    </Card>
-                </Col>
-            </Row>
+            <div className="flex justify-center py-6" >
+                <img src={adArt} className='opacity-80 relative lg:w-[800px] lg:h-[450px] border-2 rounded-xl' alt="" />
+                <div className="absolute left-[12%] right-[50%] translate-x-[50%] translate-y-2">
+                    <span className='hover:text-gray-500 font-serif text-2xl cursor-pointer
+                    font-semibold md:text-3xl italic border-2 p-1 rounded-r-full rounded-l-lg bg-green-500'>
+                        MoonBook
+                    </span>
+                </div>
+            </div>
         </div>
     );
 };

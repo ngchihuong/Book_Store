@@ -79,7 +79,7 @@ export default function CartItemSection() {
                                                                     />
                                                                 </div>
                                                             </td>
-                                                            <td className="col-start-2 row-start-1 md:max-w-[10rem] md:pl-2 lg:pl-4 ">
+                                                            <td className="col-start-2 row-start-1 md:max-w-[10rem] pt-2 md:pt-0 md:pl-2 lg:pl-4 ">
                                                                 <Link
                                                                     to={`/item/${cart.id}`}
                                                                     className="text-link font-medium italic opacity-80 line-clamp-2 
@@ -94,7 +94,7 @@ export default function CartItemSection() {
                                                                     ${cart.price}
                                                                 </span>
                                                             </td>
-                                                            <td className="col-span-2 col-start-2 row-start-3 md:text-center
+                                                            <td className="col-span-2 col-start-2 -mt-2 md:-mt-0 row-start-3 md:text-center
                                                                 lg:items-center ">
                                                                 <button
                                                                     type="button"

@@ -69,7 +69,7 @@ export default function SearchResult() {
                                             >
                                                 <div className="relative h-48 w-full overflow-hidden transition-transform duration-200 hover:scale-105">
                                                     <img src={book.imageUrls[0]} alt={"title"}
-                                                        className="object-contain w-full 50vw sm:min-w-[33vw] md:min-w-[25vw] lg:min-w-[20vw]"
+                                                        className="object-contain py-1 sm:w-[20vw] w-[50vw]"
                                                     />
                                                 </div>
                                             </Link>

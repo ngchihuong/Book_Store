@@ -1,12 +1,13 @@
 import { useFormContext } from "react-hook-form";
 import { useQuery } from "react-query";
 import * as cateApiClient from "@/api/categoryApiClient";
-import { Select } from "antd";
+// import { Select } from "antd";
 import { useEffect } from "react";
 import { BookFormEditData } from "./ManageEditBookForm";
 
 export default function CategoryEditSection() {
     const {
+        register,
         setValue,
         watch,
         formState: { errors }
@@ -34,7 +35,7 @@ export default function CategoryEditSection() {
         <div>
             <label className="text-md font-semibold font-mono flex-1">
                 Category
-                <Select
+                {/* <Select
                     placeholder="Choose a category..."
                     style={{ width: 200, minWidth: "100%" }}
                     options={
@@ -45,7 +46,16 @@ export default function CategoryEditSection() {
                     }
                     value={selectedCategoryId} // Bind current value
                     onChange={value => setValue("categoryId", value, { shouldValidate: true })} // Update react-hook-form value
-                />
+                /> */}
+                <select
+                    {...register("categoryId", { required: "This field is required!" })}
+                    className="border rounded w-full p-2 text-gray-700 font-normal"
+                >
+                    {listCategories && listCategories?.map((category) => (
+                        <option value={category._id}
+                        >{category.name}</option>
+                    ))}
+                </select>
             </label>
             {/* Error handling */}
             {errors.categoryId && (

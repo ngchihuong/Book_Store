@@ -26,7 +26,7 @@ export default function CheckoutSection() {
     )
     const mutation = useMutation(orderApiClient.insertOrder, {
         onSuccess: () => {
-            showToast({ message: "Booking Successful!", type: "SUCCESS" })
+            showToast({ message: "Order Successful!", type: "SUCCESS" })
             navigate("/")
         },
         onError: (error: any) => {

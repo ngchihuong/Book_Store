@@ -1,12 +1,13 @@
 import { useFormContext } from "react-hook-form";
 import { useQuery } from "react-query";
 import * as authorApiClient from "@/api/authorApiClient";
-import { Select } from "antd";
+// import { Select } from "antd";
 import { useEffect } from "react";
 import { BookFormEditData } from "./ManageEditBookForm";
 
 export default function AuthorEditSection() {
     const {
+        register,
         setValue,
         watch,
         formState: { errors }
@@ -34,7 +35,7 @@ export default function AuthorEditSection() {
         <div>
             <label className="text-md font-semibold font-mono flex-1">
                 Author
-                <Select
+                {/* <Select
                     placeholder="Choose a category..."
                     style={{ width: 200, minWidth: "100%" }}
                     options={
@@ -45,7 +46,17 @@ export default function AuthorEditSection() {
                     }
                     value={selectedCategoryId} // Bind current value
                     onChange={value => setValue("authorId", value, { shouldValidate: true })} // Update react-hook-form value
-                />
+                /> */}
+                   <select
+                        {...register("authorId", { required: "This field is required!" })}
+                    className="border rounded w-full p-2 text-gray-700 font-normal"
+                >
+                    {listAuthors && listAuthors?.map((author) => (
+                        <option value={author._id}
+                        // defaultValue={author[0]}
+                        >{author.name}</option>
+                    ))}
+                </select>
             </label>
             {/* Error handling */}
             {errors.authorId && (

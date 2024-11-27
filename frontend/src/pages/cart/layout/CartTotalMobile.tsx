@@ -11,7 +11,7 @@ export default function CartTotalMobile() {
     return (
         <>
             <div className="mobile-bottom-wrapper fixed bottom-0 w-full font-sans text-xl shadow-md lg:hidden">
-                <div className="flex justify-between px-10 bg-gray-100 py-2">
+                <div className="px-4 md:px-8 flex justify-between pl-10 pr-20 bg-gray-100 py-2">
                     <span>Total Price: </span>
                     <span>${totalPrice}</span>
                 </div>

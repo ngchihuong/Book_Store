@@ -24,6 +24,16 @@ import EditBook from "./admin/forms/Book/EditForm/EditBook";
 import History from "./pages/history/History";
 import SearchResult from "./pages/search/SearchResult";
 import ListOrders from "./admin/pages/orders/ListOrders";
+import OrderPending from "./admin/pages/orders/OrderPending";
+import ListTransiting from "./admin/pages/orders/ListTransiting";
+import ListDelivered from "./admin/pages/orders/ListDelivered";
+import ListCanceled from "./admin/pages/orders/ListCanceled";
+import Detail from "./admin/pages/orders/Detail";
+import HistoryPending from "./pages/history/HistoryPending";
+import HistoryDelivered from "./pages/history/HistoryDelivered";
+import HistoryTransit from "./pages/history/HistoryTransit";
+import HistoryDetail from "./pages/history/HistoryDetail";
+import LayOutCart from "./layouts/LayOutCart";
 
 
 function App() {
@@ -60,9 +70,9 @@ function App() {
             </LayOut>
           } />
           <Route path="/cart" element={
-            <LayOut>
+            <LayOutCart>
               <Cart />
-            </LayOut>
+            </LayOutCart>
           } />
           {/* <Route path="/categories" element={
             <LayOut>
@@ -84,7 +94,7 @@ function App() {
               <SearchResult />
             </LayOut>
           } />
-           <Route path="/item/:id" element={
+          <Route path="/item/:id" element={
             <LayOut>
               <Item />
             </LayOut>
@@ -96,9 +106,30 @@ function App() {
                 <Checkout />
               </LayOut>
             } />
-             <Route path="/history" element={
+            <Route path="/history" element={
               <LayOut>
-                <History />
+                <History>
+                  <HistoryPending/>
+                </History>
+              </LayOut>
+            } />
+             <Route path="/history-order-transiting" element={
+              <LayOut>
+                <History>
+                <HistoryTransit/>
+                </History>
+              </LayOut>
+            } />
+             <Route path="/history-order-delivered" element={
+              <LayOut>
+                <History>
+                <HistoryDelivered/>
+                </History>
+              </LayOut>
+            } />
+              <Route path="/history-detail/:id" element={
+              <LayOut>
+                <HistoryDetail/>
               </LayOut>
             } />
             {/* admin */}
@@ -163,7 +194,47 @@ function App() {
                 path="/list-orders"
                 element={
                   <LayOutAdmin>
-                    <ListOrders />
+                    <ListOrders >
+                      <OrderPending />
+                    </ListOrders>
+                  </LayOutAdmin>
+                }
+              />
+              <Route
+                path="/order-transiting"
+                element={
+                  <LayOutAdmin>
+                    <ListOrders >
+                      <ListTransiting />
+                    </ListOrders>
+                  </LayOutAdmin>
+                }
+              />
+              <Route
+                path="/order-delivered"
+                element={
+                  <LayOutAdmin>
+                    <ListOrders >
+                      <ListDelivered />
+                    </ListOrders>
+                  </LayOutAdmin>
+                }
+              />
+              <Route
+                path="/order-canceled"
+                element={
+                  <LayOutAdmin>
+                    <ListOrders >
+                      <ListCanceled />
+                    </ListOrders>
+                  </LayOutAdmin>
+                }
+              />
+              <Route
+                path="/order-detail/:id"
+                element={
+                  <LayOutAdmin>
+                    <Detail />
                   </LayOutAdmin>
                 }
               />

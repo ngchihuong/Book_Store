@@ -80,7 +80,7 @@ export default function BookDetails() {
                     </div>
 
                     <hr className="my-4 md:my-6" />
-                    <div className="grid grid-cols-2 gap-y-2 md:grid-cols-3 md:gap-y-4 lg:grid-cols-4 py-6">
+                    <div className="grid grid-cols-1 gap-y-2 md:grid-cols-3 md:gap-y-4 lg:grid-cols-4 py-6">
                         <div className="md:col-span-2 lg:col-span-3 flex items-center text-2xl gap-x-1">
                             <FaBookmark />
                             {bookData?.categoryId.name}
@@ -105,7 +105,7 @@ export default function BookDetails() {
                     <div className="my-6 flex flex-col-reverse gap-4 md:flex-row md:gap-8">
                         <button
                             type="button"
-                            className="bg-gray-800 text-white hover:bg-gray-500 flex w-full disabled:bg-gray-400
+                            className="bg-gray-800 text-white hover:bg-gray-500 flex w-auto min-w-[90%] disabled:bg-gray-400
                             items-center justify-center gap-x-4 rounded py-2 text-center text-lg font-medium"
                             onClick={() => {
                                 dispatch(addProduct({

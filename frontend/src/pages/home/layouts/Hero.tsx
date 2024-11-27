@@ -28,7 +28,7 @@ export default function Hero() {
                             href="#books"
                             className="outline hover:bg-gray-100 inline-flex items-center rounded py-2 px-4 text-lg font-semibold"
                         >
-                            Browse
+                            Buy Now
                             <IoArrowDownCircleSharp className="ml-2 animate-bounce !stroke-skin-dark stroke-2 mt-2 text-3xl" />
                         </a>
                     </div>
